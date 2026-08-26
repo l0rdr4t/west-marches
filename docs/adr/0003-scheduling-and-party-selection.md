@@ -17,7 +17,19 @@ first-come reliably produces a clique.
 ## Consequences
 
 - Players must be able to see their own standing before confirmation ("3rd of 8, party of
-  5"), or the cut reads as arbitrary.
+  5"), or the cut reads as arbitrary. **Amended by ticket `10`:** there is no single number,
+  and "3rd of 8, party of 5" cannot be written. **Standing is per candidate slot**, because
+  the party depends on which slot is confirmed and a character who cannot make Saturday is
+  not in the running for Saturday. On a plausible roster the same player, unchanged, is at
+  once 3rd of 4 and seated on one date, 6th of 8 and first reserve on another, and absent
+  from a third. So the requirement is that a player can see, **per candidate slot**, whether
+  they would be seated and where they stand — and whatever ranking ticket `15` settles on
+  has to produce one answer per slot, not one per quest. The ranking rule itself is
+  untouched here.
+- **Added by ticket `10`:** an interest that names no slot is not an interest. Declaring
+  interest and naming at least one slot you could make are **one act**, not two: an interest
+  with no date cannot be ranked and cannot be seated, so withdrawing your last date withdraws
+  you from the quest.
 - Confirming one quest into a slot invalidates that slot for every other quest targeting
   it, and those proposers have to be told.
 - "Played least recently" needs a definition that survives a player's first quest and a

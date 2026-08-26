@@ -66,7 +66,9 @@ _Avoid_: Availability, time, date, session slot, booking
 
 **Interest**:
 A player's declaration, with a named character, that they want to go on a quest,
-together with which of its candidate slots they could make. Not yet a seat.
+together with which of its candidate slots they could make. Names **at least one**
+slot — an interest with no date cannot be ranked or seated, so it is not one, and
+withdrawing the last date withdraws the interest. Not yet a seat.
 _Avoid_: Signup, RSVP, application, vote
 
 **Standing**:

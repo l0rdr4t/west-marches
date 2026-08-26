@@ -1,7 +1,7 @@
 # Prototype: the quest page, as an interested player sees it
 
 Type: prototype
-Status: open
+Status: resolved
 Blocked by: 01, 04
 
 ## Question

@@ -94,6 +94,19 @@ prototypes, which exist to be reacted to and then deleted.
   **ban may never be the departure mechanism** — it destroys every message the person ever wrote,
   which under ADR 0004 is the campaign's memory. Coming back is an explicit admin reactivation.
 
+- [Prototype: the quest page, as an interested player sees it](issues/10-prototype-quest-page.md) —
+  three variants built and reacted to. **B, a stack of per-slot cards, is the player's page; the
+  matrix is `11`'s.** Eight characters by four slots does fit a phone, but a cross-tab answers the
+  Game Master's question, not the player's. **ADR 0003's "3rd of 8, party of 5" cannot be written**:
+  standing is **per candidate slot** — one unchanged player is simultaneously 3rd of 4 and seated on
+  one date and 6th of 8 on another. **ADR 0003 is amended in place**: that consequence now asks
+  for *per candidate slot, whether they would be seated and where they stand*, and `15` has to
+  produce one answer per slot, not one per quest. The ranking rule itself is left to `15`.
+  What makes a cut bearable rather than discouraging: a forecast not a verdict, the recency reason
+  printed on **every** row and never rounded, and a waitlist position that is worth something.
+  An interest that names no slot is not an interest. Added **Standing** to `CONTEXT.md`, and
+  invented an `interestCloses` deadline the page cannot be written without — `15`'s to own.
+
 ## Not yet specified
 
 - **Character lifecycle.** Who sets a character's level, and when? What happens on death
@@ -102,8 +115,13 @@ prototypes, which exist to be reacted to and then deleted.
   characters freely and deliberately left level, death and retirement here. Needs a ticket
   of its own, and the standing half of it may be `15`'s.
 - **The campaign's front page.** What a player sees on arrival: open quests, my standing,
-  upcoming slots, unreported quests? Waits on the navigation research (`01`) and both
-  prototypes.
+  upcoming slots, unreported quests? `01` and `10` are in — `10` drew its page inside a fake
+  sidebar carrying `08`'s rules and nothing fought it — so this now waits on `11` alone.
+- **Is a character's level mismatch public?** Q16 makes the warning advisory, and `10` showed it
+  twice: inline when you pick the character, and as a pill on that character's row that the whole
+  campaign can read. The second is a social pressure nobody decided on, and may be what stops an
+  out-of-range player declaring at all — a refusal by other means. No ticket owns it; `15` owns
+  only how much of the interest list is visible.
 - **Permissions in detail.** Who may edit or withdraw a quest that isn't theirs, or remove
   someone's interest. **Unblocked** by `05`, which settled the two flags and their scope but
   not these. (Correcting a report is already answered: `07` says a Game Master may never do it.)
