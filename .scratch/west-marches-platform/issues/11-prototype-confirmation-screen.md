@@ -2,7 +2,7 @@
 
 Type: prototype
 Status: open
-Blocked by: 06, 10
+Blocked by: -
 
 ## Question
 
@@ -14,6 +14,11 @@ Build a rough, throwaway prototype of what the Game Master sees:
 
 - Which of their slots each interested character can make, and therefore what party each
   slot would produce
+- **Added by `06`: this screen has two axes, not one.** Under ADR 0006 a slot is offered
+  unattached and several quests may target the same date, so a Game Master confirming is
+  choosing *which quest* as well as *which slot*. `10`'s column footer ("4 seated · 1 seat
+  short") prices one axis only. What the other axis looks like — three quests competing for
+  one Friday — has never been drawn.
 - The standing order — who has played least recently — so the consequences of picking a
   slot are visible before picking it
 - The moment of confirmation, and what it visibly spends: the slot, and the other quests

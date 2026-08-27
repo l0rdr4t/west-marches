@@ -35,6 +35,9 @@ So the Rota orders by, in order:
 3. **Who declared first.**
 
 A **bump** is recorded when the slot you declared for is confirmed and you were not seated.
+(**Sharpened by ADR 0006:** seated or not *in the quest you declared on*. Several quests may
+target one date, so a quest that merely loses the date to another quest deals its declarers no
+bump — nobody refused them.)
 It needs no new state — it is derivable from interests, confirmations and parties we
 already keep — and two edges fall out of the definition rather than needing rules of their
 own. A quest that dies unconfirmed bumps nobody, because nobody refused you. Declaring for
@@ -112,6 +115,10 @@ and a stale number driving an automatic decision is worse than no number at all.
   never accrue a bump, and sort high forever. It buys the incentive a coordination tool
   actually wants — *withdraw before the deadline and you keep your place; no-show and you
   have spent it* — and it costs a player who genuinely falls ill their turn. Accepted.
+  **Restated by ADR 0006:** the free window runs to the start of play, not to the deadline —
+  **the seat is spent unless you give it back before it is used.** The original sentence left
+  the gap between the deadline and the session unaddressed, and closing it strictly would have
+  made announcing cost the same as ghosting.
   **Attendance no longer feeds the Rota.** It keeps its other job, deciding who may edit
   the report.
 - **The waitlist is the Rota continuing past the cut line, frozen at confirmation.** Not

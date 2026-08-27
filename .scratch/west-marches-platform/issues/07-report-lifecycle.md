@@ -70,7 +70,10 @@ role assigned before play**: Mors Immortalis' Scribe, Louisville's Notetaker, Ar
   there may still write it, bylined to whoever actually did.
 - **"Played, not reported" is a first-class state**, shown on the quest, on the campaign's
   front page and to the Scribe, with the deadline attached so the ask is specific and finite.
-  Only played quests can owe a report — declined and abandoned ones never do.
+  Only played quests can owe a report — declined and abandoned ones never do. (**Corrected by
+  `06`:** there is no declined state. The two dead ends are **withdrawn** and **abandoned**, and
+  a **cancelled** quest owes nothing either — it goes back to proposed without ever being
+  played.)
 - **14 days is a hard-coded constant, used for both clocks.** Ticket `04` set the precedent:
   one campaign, no settings page. It is explainable in one sentence — *two weeks to write it,
   two weeks to fix it.*

@@ -144,6 +144,8 @@ and that is the right call. Deactivation removes access, never history.
   proposal of intent and nobody is left to answer questions in its room. Withdrawal is terminal,
   which freezes the room per ticket `08` and keeps the discussion in the trail. A silently
   departed player's quests go stale instead — ticket `06`'s transition, not this ticket's.
+  (**`06` answered it:** there is no stale state. They are **abandoned** by the clock, 14 days
+  after the last moment anything could still confirm them.)
 - **An owed report lapses and is never reassigned.** Ticket `07` already has the obligation die
   at 14 days with the quest reading "no report" for good. Reassigning a Scribe would be the first
   crack in `07`'s rule that a Game Master may never write or correct one, and it invents a

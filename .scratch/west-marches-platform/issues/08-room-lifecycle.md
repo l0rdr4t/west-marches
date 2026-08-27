@@ -75,7 +75,8 @@ unread rooms (`app/javascript/controllers/badge_dot_controller.js:24-26`), so pl
 permanent number pointing at a room they can no longer open to clear.
 
 The composer is replaced by one line saying the quest is over, linking to its **report** — or to the
-quest itself where there is none, which is the declined and abandoned case. It gives the room a way
+quest itself where there is none, which is the withdrawn and abandoned case (`06` retired
+"declined"). It gives the room a way
 back out to the durable record.
 
 ### Navigation
@@ -140,7 +141,10 @@ messages, without one drowning the other. No live/finished toggle is needed — 
 ### Handed on
 
 - **The freeze trigger** — which event ends a quest for good (report published, abandoned, declined) is
-  ticket `07`'s. This ticket specifies the shape and defers the trigger.
+  ticket `07`'s. This ticket specifies the shape and defers the trigger. (**Settled:** `07` gave the
+  trigger — report, or 14 days — and `06` gave the state set. Freezing has **three** triggers, not
+  one: **closed**, **withdrawn** and **abandoned**. No machinery changes, since this ticket derives
+  freezing from quest state, but it was written expecting a single trigger.)
 - **Abandonment must be a real terminal state that something actually sets** — ticket `06`'s. Without it
   dead proposals never freeze and slowly fill the sidebar, which is the one way the navigation decision
   above fails.

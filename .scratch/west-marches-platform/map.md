@@ -14,8 +14,8 @@ Reached when every ticket below is resolved and the spec exists at
 ## Notes
 
 **Domain.** A single West Marches TTRPG campaign. A large roster of players, no fixed
-party. Players propose **quests**; Game Masters offer dated **slots**; interested
-players declare which slots they can make; a Game Master **confirms** a quest into one
+party. Players propose **quests**; Game Masters post dated **slots** unattached and quests
+are pointed at them; interested players declare which slots they can make; a Game Master **confirms** a quest into one
 slot, which cuts the **party** by the **rota**. Afterwards someone writes the **report**.
 Play happens elsewhere.
 
@@ -26,6 +26,7 @@ Play happens elsewhere.
 - `docs/adr/0002-a-quest-is-a-single-expedition.md` — why quest and session are one model
 - `docs/adr/0003-scheduling-and-party-selection.md` — how a quest gets scheduled and a party gets cut
 - `docs/adr/0005-the-rota-cuts-every-party.md` — the rota: what the cut ranks by, and why nobody overrides it
+- `docs/adr/0006-the-slot-pool-and-the-quests-life.md` — slots are a pool; the six states and every way a quest ends
 
 **Skills.** `/grilling` and `/domain-modeling` for the decision tickets, `/prototype` for
 the prototype tickets, `/research` for the research tickets. Update `CONTEXT.md` inline
@@ -131,6 +132,20 @@ prototypes, which exist to be reacted to and then deleted.
   **frozen**. The cut is blind to your character, and level went further — the platform records
   it and **never compares it**, because advisory-but-computed is attested nowhere and a stale
   number driving an automatic decision is worse than none.
+- [Quest lifecycle: cancellation, drop-outs, waitlist promotion, and spent slots](issues/06-quest-lifecycle-edges.md) —
+  **ADR 0006**. The ticket's root turned out to be a question it never asked: **a slot is an
+  unattached offer of time**, posted with no quest on it, and quests are *pointed at* it — several
+  may target one date, and confirmation spends it for all. That is **contradiction 6**, which had
+  no ticket. Six states — **proposed, confirmed, played, closed**, plus **withdrawn** and
+  **abandoned** — with no `declined` (a claim is not an application, so there is nothing to reject)
+  and no `stale` (the clock is the staleness rule). **Cancellation is not a state**: confirmed →
+  proposed, interest intact, and the **slot stays spent**, because cancelling is the Game Master
+  saying that evening will not be run. A quest is abandoned **14 days after the last moment
+  anything could confirm it**. Promotion off the waitlist is **automatic at any hour**, and ADR
+  0005 gains the sentence it was missing — **the seat is spent unless you give it back before it
+  is used** — because if announcing costs what ghosting costs, nobody announces. A slot carries a
+  **start and an end**; there is **no minimum party size**; **any** Game Master may cancel a
+  confirmed quest, and deactivating one cancels theirs.
 
 ## Not yet specified
 
@@ -150,14 +165,12 @@ prototypes, which exist to be reacted to and then deleted.
   not these. `14` routed one more here: whether a Game-Master-proposed quest is any different,
   and its answer was that nothing about who proposed it makes it a different question.
   (Correcting a report is already answered: `07` says a Game Master may never do it.)
+- **What a Game Master sees when three quests want the same Friday.** ADR 0006 makes
+  confirmation a two-axis decision — which quest as well as which slot — and nothing has drawn
+  it. `11`'s to prototype, but flagged here because `11`'s question predates the pool.
 - **Life at a year in.** `08` settled that rooms are kept forever and frozen ones leave the
   sidebar, so navigation no longer degrades. What remains: whether hundreds of played quests
   and their reports need paging or retention on their own listing pages.
-- **Is a played quest that "didn't happen" a thing?** `07` depends on a Game Master being able
-  to say a confirmed quest was cancelled on the day, or the system demands a report from a party
-  that never met. Ticket `06`'s, and `15` raised the stakes: under ADR 0005 the *seat* spends
-  your standing, so a cancelled quest that isn't handled costs five people their turn on the
-  rota.
 
 From `03`'s research. Its two sharpest contradictions became tickets `14` and `15`, both now
 resolved — `15` in **ADR 0005**. What remains here has no ticket:

@@ -58,14 +58,19 @@ there. Proposed by a player, or by a Game Master — whose proposal arrives with
 slots already attached — then discussed, scheduled into one slot, played once,
 and then done. Unfinished business in the world comes back as a *new* quest, which may
 say which quest it *follows from* — a pointer for people to read, not a structure the
-system traverses. Nothing is inherited along it.
+system traverses. Nothing is inherited along it. Its life is six states: **proposed**,
+**confirmed**, **played** (its slot has passed), **closed** (reported, or 14 days on),
+and from proposed the two dead ends **withdrawn** and **abandoned**. Cancelling is not a
+state — a cancelled quest goes back to proposed with its interest intact.
 _Avoid_: Session, adventure, event, game, mission, module
 
 **Slot**:
-A dated window a Game Master has offered to run in. Exclusive: once a quest is
-confirmed into it, it is spent. Carries its own deadline — interest in it closes
-72 hours before it starts, set by the Game Master who offered it, and it cannot be
-confirmed until then.
+A dated window a Game Master has offered to run in, with a start and an end. Offered
+**unattached**: it names no quest, and quests are pointed at it — by their proposer or
+by a Game Master — which makes it one of their candidate slots. Several quests may
+target the same slot. Exclusive: once a quest is confirmed into it, it is spent, for
+every other quest too. Carries its own deadline — interest in it closes 72 hours before
+it starts, set by the Game Master who offered it, and it cannot be confirmed until then.
 _Avoid_: Availability, time, date, session slot, booking
 
 **Interest**:
@@ -99,7 +104,8 @@ _Avoid_: Rank, priority, score, place in line, queue position
 
 **Party**:
 The characters holding a seat on a confirmed quest. Who was *given* a seat, not who
-turned up — see attendance.
+turned up — see attendance. A seat may be given back free at any time before the quest
+starts, which promotes the waitlist; keeping it and not appearing spends your standing.
 _Avoid_: Group, team, roster, attendees
 
 **Attendance**:
@@ -113,12 +119,14 @@ _Avoid_: Turnout, present, roll call, the party
 **Waitlist**:
 The characters who declared interest in a confirmed quest but did not make the cut.
 The rota continuing past the cut line, and frozen at confirmation: the order does not
-re-sort afterwards, so "first seat to free up is yours" stays true.
+re-sort afterwards, so "first seat to free up is yours" stays true. Promotion is
+automatic and needs nobody's decision, at any hour.
 _Avoid_: Queue, standby, overflow
 
 **Confirmation**:
-The Game Master's act of binding a quest to one of its candidate slots. Possible only
-once that slot's deadline has passed. It is the single moment a quest becomes real: it
+The Game Master's act of binding a quest to one of its candidate slots. Where several
+quests target the same slot it chooses between them too, so it settles which quest and
+which date at once. Possible only once that slot's deadline has passed. It is the single moment a quest becomes real: it
 spends the slot, cuts the party from the interested characters by the rota, creates the
 waitlist, and names the scribe. The Game Master chooses the slot and nothing else — the
 cut is the rota's and cannot be overridden.

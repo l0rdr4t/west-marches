@@ -39,7 +39,11 @@ first-come reliably produces a clique.
   with no date cannot be ranked and cannot be seated, so withdrawing your last date withdraws
   you from the quest.
 - Confirming one quest into a slot invalidates that slot for every other quest targeting
-  it, and those proposers have to be told.
+  it, and those proposers have to be told. **Extended by ADR 0006**, which makes the pool
+  explicit — a slot is offered unattached and quests are pointed at it — and adds a second
+  case: a Game Master **withdrawing** an unconfirmed slot takes every declaration against it
+  on every quest targeting it, which can end someone's interest in a quest without them
+  acting.
 - "Played least recently" needs a definition that survives a player's first quest and a
   player who was on the waitlist. Both sort as never-played. **Answered by ADR 0005:** under
   the Rota they no longer sort alike — the waitlisted player carries a bump and the

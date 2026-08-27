@@ -51,9 +51,12 @@ everyone that ticket `15` could not keep Colvillian's exemption for player-propo
 ### One quest, with the proposer recorded
 
 Not Colvillian's two channels with two rule sets. A Game Master's proposal is a quest whose
-proposer happens to be a Game Master, and the only difference is that **it arrives with its
-slots already attached** — proposal and slot-offering collapse into one act, because there is
-nobody to wait for. That is a shorter path through the same lifecycle, not a second lifecycle.
+proposer happens to be a Game Master, and the only difference is that **they can point it at
+one of their own dates in the same act** — proposal and targeting collapse together, because
+there is nobody to wait for. That is a shorter path through the same lifecycle, not a second
+lifecycle. (This paragraph originally said the proposal "arrives with its slots already
+attached", which ticket `06` corrected: under ADR 0006 a slot is never attached to a quest, it
+is offered unattached and quests are pointed at it.)
 
 `03` made the case and it is not close. Lutes measured **70% Game-Master-posted, 30%
 player-initiated**. Contradiction 8 is blunter: campaigns die of *under-supply of initiative*,
