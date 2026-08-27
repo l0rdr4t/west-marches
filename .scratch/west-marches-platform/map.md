@@ -27,6 +27,8 @@ Play happens elsewhere.
 - `docs/adr/0003-scheduling-and-party-selection.md` — how a quest gets scheduled and a party gets cut
 - `docs/adr/0005-the-rota-cuts-every-party.md` — the rota: what the cut ranks by, and why nobody overrides it
 - `docs/adr/0006-the-slot-pool-and-the-quests-life.md` — slots are a pool; the six states and every way a quest ends
+- `docs/adr/0007-nothing-is-only-a-notification.md` — the three surfaces, and why no
+  notification may be the only place a fact lives
 
 **Skills.** `/grilling` and `/domain-modeling` for the decision tickets, `/prototype` for
 the prototype tickets, `/research` for the research tickets. Update `CONTEXT.md` inline
@@ -162,6 +164,27 @@ prototypes, which exist to be reacted to and then deleted.
   Contender ordering is "best party first", accepted with its cost named: it sinks the quest
   whose only date it is, and the flag under it does the work the sort order doesn't.
 
+- [Which events reach whom, through which channel?](issues/09-notification-matrix.md) —
+  **ADR 0007**. The facts settled it: the only producer of a push in this fork is a **message
+  in a room**, there is **no email** anywhere in the repo, and there is **no clock** — nothing
+  happens here because time has passed. So no notification system is built and no mail is
+  sent. Three surfaces already in the fork carry everything: **the Tavern** for what the whole
+  campaign should notice (a new quest, a new slot, a new report), **the quest's room** for that
+  quest's life, and **the Herald** — a per-player direct room from a bot, unwritable — for what
+  happened to *you*. Because push is unreliable and there is no fallback, the load-bearing rule
+  is that **no notification may be the only place a fact lives**: every event is also legible as
+  state on a screen, which binds the whole spec and is what makes "the platform never overrides
+  a player's preference" safe to say. **State is derived from time and a recurring job only
+  tells**, so a dead worker loses messages and never corrupts data. **One message per act, per
+  player**, not per event. Standing drift before confirmation is a **deliberate silence** —
+  `10`'s open question, answered — and so is a lost date you still have alternatives to; the
+  three events `06` handed here are all told. Found the event nobody had listed: **a slot's
+  deadline passes and its Game Master is not told**, a failure ADR 0005 and ADR 0006 created
+  between them with no owner. A published **report** is the Tavern's third item, because `07`'s
+  message into the room is a tombstone in a room `08` freezes in the same moment. The **scribe**
+  is chased twice, privately, then never again. Added **The Herald** to `CONTEXT.md` and amended
+  **The Tavern**.
+
 ## Not yet specified
 
 - **Character lifecycle.** What happens on death or retirement? **Unblocked, and much
@@ -175,12 +198,18 @@ prototypes, which exist to be reacted to and then deleted.
   nothing else gates it. `11` settles what it is *not*: the confirmation screen is the
   Game-Master surface, reached from "You run" in the sidebar, and shows only dates the viewer
   offered. `14` adds one question: whether Game-Master-proposed and player-proposed quests share
-  one list. One model implies one list; the layout is this item's.
+  one list. One model implies one list; the layout is this item's. `09` makes this item **load-bearing
+  rather than pleasant**: every silence in its matrix is a fact that has to be visible
+  somewhere, and most of them land here.
 - **Permissions in detail.** Who may edit or withdraw a quest that isn't theirs, or remove
   someone's interest. **Unblocked** by `05`, which settled the two flags and their scope but
   not these. `14` routed one more here: whether a Game-Master-proposed quest is any different,
   and its answer was that nothing about who proposed it makes it a different question.
   (Correcting a report is already answered: `07` says a Game Master may never do it.)
+- **Player-to-player direct rooms.** Never decided by any ticket, and `09` now depends on the
+  answer: the Herald is a `Rooms::Direct`, so the *model* has to survive the fork even if
+  Campfire's DM feature does not. Whether players can message each other at all is untouched.
+
 - **Life at a year in.** `08` settled that rooms are kept forever and frozen ones leave the
   sidebar, so navigation no longer degrades. What remains: whether hundreds of played quests
   and their reports need paging or retention on their own listing pages.

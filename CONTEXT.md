@@ -174,7 +174,17 @@ readable and searchable.
 _Avoid_: Archived, closed, locked, read-only
 
 **The Tavern**:
-The single campaign-wide room, where the campaign talks when no quest is at stake.
-The only room with no quest behind it, and so the only one that never freezes. There
-is exactly one.
+The single campaign-wide room, where the campaign talks when no quest is at stake. The
+only *open* room with no quest behind it, and one of the two that never freeze — see the
+Herald for the other. There is exactly one. The platform speaks here only about what the
+whole campaign should notice: a new quest, a new slot, a new report.
 _Avoid_: General, lobby, off-topic, All Talk
+
+**The Herald**:
+The room where the campaign tells you what happened to *you* — that you have a seat, that
+you were promoted, that your interest ended when its last date went. One per player,
+written only by the platform, and a player cannot write back into it. It never freezes,
+and nothing that happens to somebody else appears in it. What happened to a *quest* is
+said in that quest's room instead, and what the whole campaign should notice is said in
+the Tavern.
+_Avoid_: Notifications, alerts, inbox, feed, DM
