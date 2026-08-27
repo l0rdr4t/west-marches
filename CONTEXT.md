@@ -80,6 +80,18 @@ slot — an interest with no date cannot be ranked or seated, so it is not one, 
 withdrawing the last date withdraws the interest. Not yet a seat.
 _Avoid_: Signup, RSVP, application, vote
 
+**Candidate slot**:
+A slot a quest has been pointed at, and therefore one of the dates it could be confirmed
+into. The unit almost everything is counted per: standing, bumps, deadlines and the cut are
+all per candidate slot, never per quest.
+_Avoid_: Option, proposed date, choice
+
+**Seat**:
+A place in a party. The currency the rota deals in: taking one spends your standing whether
+or not you walk in, and giving it back before it is used costs nothing. What you did not get
+when you were bumped.
+_Avoid_: Spot, place, ticket, berth
+
 **Rota**:
 The order the party is cut in. Ranks the interested players by bumps since their last
 seat, then by how long since that seat — never seated sorts as longest — then by who
@@ -128,8 +140,10 @@ The Game Master's act of binding a quest to one of its candidate slots. Where se
 quests target the same slot it chooses between them too, so it settles which quest and
 which date at once. Possible only once that slot's deadline has passed. It is the single moment a quest becomes real: it
 spends the slot, cuts the party from the interested characters by the rota, creates the
-waitlist, and derives the scribe. The Game Master chooses the slot and nothing else — the
-cut is the rota's and cannot be overridden, and neither is the scribe theirs to name.
+waitlist, and shows who the report will fall to. The Game Master chooses the slot and
+nothing else — the cut is the rota's and cannot be overridden, and neither is the scribe
+theirs to name.
+Where several quests want one date, the ones competing for it are its **contenders**.
 _Avoid_: Approval, booking, scheduling, locking
 
 **Level range**:
@@ -149,11 +163,13 @@ the campaign remembers — with holes where nobody wrote one.
 _Avoid_: Recap, log, summary, minutes, journal
 
 **Scribe**:
-The one character in a party who owes a quest's report. **Derived at confirmation, not
-chosen**: it falls to whoever in the party has gone longest without writing one,
-never-scribed first, ties broken by rota position. A Game Master no more picks the scribe
-than they pick the party. Derived as a character because that is what a party is made of,
-but the debt belongs to the player behind it and outlives that character. Others may edit
+The one character who owes a quest's report. **Derived, not chosen**: it falls to whoever
+was there who has gone longest without writing one, never-scribed first, ties broken by
+rota position. Read off the party from confirmation onwards as a forecast, like everything
+else on that screen, and settled by who actually turned up — so a scribe who gives their
+seat back, or whom attendance drops, is not the scribe. A Game Master no more picks the
+scribe than they pick the party. Derived as a character because that is what a party is
+made of, but the debt belongs to the player behind it and outlives that character. Others may edit
 the report; only the scribe is asked for it.
 _Avoid_: Author, note-taker, recorder, secretary
 
@@ -188,3 +204,10 @@ and nothing that happens to somebody else appears in it. What happened to a *que
 said in that quest's room instead, and what the whole campaign should notice is said in
 the Tavern.
 _Avoid_: Notifications, alerts, inbox, feed, DM
+
+**The Board**:
+The campaign's front page: what is proposed, what dates are on offer, what is confirmed, and
+what the platform is quietly waiting on you for. Named for what a quest is *on* while it
+waits for a date. It is where every fact the platform decides not to send a message about stays
+visible, which is what makes those silences safe.
+_Avoid_: Dashboard, home, feed, overview

@@ -29,13 +29,14 @@ The prototype is disposable. Its job is to provoke "no, not like that" — not t
 
 ## Findings
 
-Prototype: [`prototypes/10-quest-page/quest-page.html`](../prototypes/10-quest-page/quest-page.html).
-One self-contained file, no build, nothing wired to Rails. Open it in a browser and use the
-floating bar: `←`/`→` (or the arrow keys) cycle three variants, `you` toggles before/after
-declaring, `width` swaps a 390px phone frame in. It is live — ticking a date recomputes every
-party, waitlist and position on the page, which is the part worth playing with. Fake data is the
-ticket's stress case: 8 interested characters, 4 candidate slots, party of 5, one character below
-the level range and one above.
+Prototype: `prototypes/10-quest-page/quest-page.html` — **folded into `spec.md` §4.2 and
+deleted by ticket `12`**, as the map requires of throwaway prototypes. It was one
+self-contained file, no build, nothing wired to Rails, driven by a floating bar: `←`/`→`
+cycled three variants, `you` toggled before/after declaring, `width` swapped a 390px phone
+frame in. It was live — ticking a date recomputed every party, waitlist and position on the
+page, which was the part worth playing with. Fake data was the ticket's stress case: 8
+interested characters, 4 candidate slots, party of 5, one character below the level range and
+one above.
 
 - **A · The Board** — the availability matrix. Rows are the interested characters in the order the
   party is cut in; columns are the slots; your own row is the declaration control.

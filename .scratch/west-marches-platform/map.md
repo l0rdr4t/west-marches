@@ -11,6 +11,9 @@ build from it without making further design decisions.
 Reached when every ticket below is resolved and the spec exists at
 `.scratch/west-marches-platform/spec.md`.
 
+**Reached.** Every ticket is resolved and [`spec.md`](spec.md) is written. What follows stands as
+the record of how it was arrived at; the spec is what implementation sessions read.
+
 ## Notes
 
 **Domain.** A single West Marches TTRPG campaign. A large roster of players, no fixed
@@ -20,6 +23,8 @@ slot, which cuts the **party** by the **rota**. Afterwards someone writes the **
 Play happens elsewhere.
 
 **Read first, every session.**
+- [`spec.md`](spec.md) — the destination: the build, screen by screen and table by table. Where it
+  and an ADR disagree, the spec is later and says so in its §9.
 - `CONTEXT.md` — the glossary. It is opinionated about vocabulary; Campfire's inherited
   terms are deliberately redefined there. Use its words in tickets and in the spec.
 - `docs/adr/0001-hard-fork-of-campfire.md` — why this is a Campfire fork, and single-tenant
@@ -185,53 +190,39 @@ prototypes, which exist to be reacted to and then deleted.
   is chased twice, privately, then never again. Added **The Herald** to `CONTEXT.md` and amended
   **The Tavern**.
 
+- [Write the spec](issues/12-write-the-spec.md) — [`spec.md`](spec.md). Ten sections, and it
+  closes the map as well as writing it down. It **settles four of the items below** — the front
+  page is **The Board**, permissions in full, direct rooms **stay**, and a character has **no
+  lifecycle** — and **ratifies `11`'s two unowned inventions**, the scribe derivation and contender
+  ordering. It **amends `07`** twice over the scribe: derived, not named, and re-derived rather
+  than reassigned when attendance drops them. Fourteen decisions it made that no ticket had made
+  are listed in its §9 rather than buried. `CONTEXT.md` gained **The Board**, **Candidate slot**,
+  **Seat** and **contenders**. The prototypes were folded in and deleted.
+
 ## Not yet specified
 
-- **Character lifecycle.** What happens on death or retirement? **Unblocked, and much
-  smaller than it was.** `05` settled that players create characters freely; `15` settled that
-  level is a note the platform never reasons about, so "who sets a character's level, and when"
-  no longer gates anything; and the standing half is gone entirely, because the rota ranks
-  players, not characters. What is left is death and retirement, and whether either is a state
-  the platform holds at all.
-- **The campaign's front page.** What a player sees on arrival: open quests, my standing,
-  upcoming slots, unreported quests? **Unblocked** — `01`, `10` and now `11` are all in, and
-  nothing else gates it. `11` settles what it is *not*: the confirmation screen is the
-  Game-Master surface, reached from "You run" in the sidebar, and shows only dates the viewer
-  offered. `14` adds one question: whether Game-Master-proposed and player-proposed quests share
-  one list. One model implies one list; the layout is this item's. `09` makes this item **load-bearing
-  rather than pleasant**: every silence in its matrix is a fact that has to be visible
-  somewhere, and most of them land here.
-- **Permissions in detail.** Who may edit or withdraw a quest that isn't theirs, or remove
-  someone's interest. **Unblocked** by `05`, which settled the two flags and their scope but
-  not these. `14` routed one more here: whether a Game-Master-proposed quest is any different,
-  and its answer was that nothing about who proposed it makes it a different question.
-  (Correcting a report is already answered: `07` says a Game Master may never do it.)
-- **Player-to-player direct rooms.** Never decided by any ticket, and `09` now depends on the
-  answer: the Herald is a `Rooms::Direct`, so the *model* has to survive the fork even if
-  Campfire's DM feature does not. Whether players can message each other at all is untouched.
+Settled by `12` and struck from this list: the campaign's front page (**The Board**, spec §4.1),
+permissions in detail (spec §3.10), player-to-player direct rooms (**kept**, spec §4.10), and
+character lifecycle (**none**, spec §8). What is left has no owner and no ticket.
 
-- **Life at a year in.** `08` settled that rooms are kept forever and frozen ones leave the
-  sidebar, so navigation no longer degrades. What remains: whether hundreds of played quests
-  and their reports need paging or retention on their own listing pages.
-
-From `03`'s research. Its two sharpest contradictions became tickets `14` and `15`, both now
-resolved — `15` in **ADR 0005**. What remains here has no ticket:
+Two of these come from `03`'s research, whose two sharpest contradictions became tickets `14` and
+`15` — both resolved, `15` in **ADR 0005**.
 
 - **No unit above the Slot, and burnout is the documented cause of death.** Adventuring blocks with
   a retrospective, two-GM rotation, enforced downtime — every long-lived campaign has a pacing
   device for the Game Master. Ours has none. (Contradiction 11.)
-- **The scribe rule is invented and unratified.** `11` struck the scribe picker and put a
-  derivation in its place — longest without writing one, never-scribed first. Nothing in `07`
-  contradicts it, but nothing in `07` says it either. `12` writes it down or `07` disowns it.
-- **Contender ordering.** "Best party first" is what `11` built and accepted; it is in no ADR.
-
-- **Search quality is now load-bearing.** ADR 0004 makes retrieval the whole of our answer to
-  "what do we know about X", but `SearchesController` still does `last(100)` with no ranking
-  and no scoping (`app/controllers/searches_controller.rb:23`). Ranking, paging and scoping
-  need an owner. `geared_pagination` is already in the `Gemfile`. Nothing in `08` changes — the
-  bar moved, not the decisions.
 - **Multi-Game-Master continuity.** Several Game Masters share one world with no notion of who has
   claimed which part of it; real campaigns use tile-claim spreadsheets and out-of-band briefings.
+  A Game-Masters-only room is cheap to scope now the flag exists, and belongs to this rather than
+  to the roster (`05`).
+- **Search quality is load-bearing.** ADR 0004 makes retrieval the whole of our answer to "what do
+  we know about X". The spec gives it an owner — reports get their own index and result group, and
+  `last(100)` (`app/controllers/searches_controller.rb:23`) becomes paged results in slice 9 — but
+  **relevance ranking is explicitly not solved**, and the spec names that as a limit rather than
+  hiding it.
+- **Life at a year in.** `08` settled that rooms are kept forever and frozen ones leave the
+  sidebar, so navigation no longer degrades. What remains: whether hundreds of played quests and
+  their reports need paging or retention on their own listing pages.
 
 ## Out of scope
 

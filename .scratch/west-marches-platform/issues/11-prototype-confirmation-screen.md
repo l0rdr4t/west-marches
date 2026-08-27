@@ -35,10 +35,11 @@ Build a rough, throwaway prototype of what the Game Master sees:
 
 ## Findings
 
-Prototype: [`prototypes/11-confirmation-screen/confirmation-screen.html`](../prototypes/11-confirmation-screen/confirmation-screen.html).
-One self-contained file, no build. Open it and use the floating bar: `←`/`→` (or the arrow keys)
-cycle three variants, `clock` moves the day between 2 Sep and 10 Sep, `width` swaps in a 390px
-phone frame. Confirming is live and mutates the board — reload to reset.
+Prototype: `prototypes/11-confirmation-screen/confirmation-screen.html` — **folded into
+`spec.md` §4.5 and deleted by ticket `12`**, as the map requires of throwaway prototypes. It
+was one self-contained file, no build, driven by a floating bar: `←`/`→` cycled three
+variants, `clock` moved the day between 2 Sep and 10 Sep, `width` swapped in a 390px phone
+frame. Confirming was live and mutated the board.
 
 - **A · The Grid** — your dates down the side, the quests targeting them across the top; each cell
   is the party that pairing would produce. Refuses to pick an axis.
