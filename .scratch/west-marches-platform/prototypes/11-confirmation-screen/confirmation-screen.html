@@ -20,6 +20,10 @@
     C  By Quest    — a stack of cards, one per quest waiting on me; each card is the dates it
                      could run on. Quest-led: "this has been waiting three weeks, when?"
 
+  RESOLVED: B won. A and C are kept because the ticket's argument is the disagreement
+  between them, and they deserve to be seen rather than described. The scribe picker A, B and
+  C all shared was struck — the scribe is derived, see scribeFor().
+
   Confirmation is live: confirming mutates in-memory state, spends the slot for every other
   quest, and redraws the board. Reload to reset.
 
@@ -304,9 +308,6 @@ table.board tbody tr.spent th.when, table.board tbody tr.spent td { opacity: 0.5
 .spend .line .g { flex: none; inline-size: 1.1rem; text-align: center; }
 .spend .line.bad { color: var(--color-danger); }
 .dialog .acts { display: flex; gap: 0.5rem; justify-content: flex-end; margin-block-start: 1.25rem; flex-wrap: wrap; }
-.scribepick { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-block-start: 0.4rem; }
-.scribepick button { border-radius: 999px; }
-.scribepick button[aria-pressed="true"] { border-color: var(--color-link); background: var(--color-selected); font-weight: 600; }
 
 .done {
   border: 1px solid var(--color-seat); background: var(--color-seat-bg);
@@ -364,17 +365,17 @@ const CLOCKS = {
 
 // Players. The rota ranks PEOPLE, not characters (ADR 0005).
 const PEOPLE = {
-  ruth:   { player: 'Ruth Kelleher',   bumps: 3, lastSeat: null },
-  sam:    { player: 'Sam Okafor',      bumps: 2, lastSeat: null },
-  tara:   { player: 'Tara Lindqvist',  bumps: 1, lastSeat: '2026-06-10' },
-  marta:  { player: 'Marta Vance',     bumps: 1, lastSeat: '2026-07-29' },
-  priya:  { player: 'Priya Raman',     bumps: 1, lastSeat: '2026-08-15' },
-  ben:    { player: 'Ben Adeyemi',     bumps: 0, lastSeat: null },
-  aldous: { player: 'Aldous Finch',    bumps: 0, lastSeat: '2026-07-02' },
-  jonah:  { player: 'Jonah Reyes',     bumps: 0, lastSeat: '2026-08-05' },
-  dmitri: { player: 'Dmitri Sarn',     bumps: 0, lastSeat: '2026-08-12' },
-  nia:    { player: 'Nia Osei',        bumps: 0, lastSeat: '2026-08-19' },
-  felix:  { player: 'Felix Aumann',    bumps: 0, lastSeat: '2026-08-22' }
+  ruth:   { player: 'Ruth Kelleher',   bumps: 3, lastSeat: null,         lastScribed: '2026-08-01' },
+  sam:    { player: 'Sam Okafor',      bumps: 2, lastSeat: null,         lastScribed: null },
+  tara:   { player: 'Tara Lindqvist',  bumps: 1, lastSeat: '2026-06-10', lastScribed: '2026-05-12' },
+  marta:  { player: 'Marta Vance',     bumps: 1, lastSeat: '2026-07-29', lastScribed: '2026-07-20' },
+  priya:  { player: 'Priya Raman',     bumps: 1, lastSeat: '2026-08-15', lastScribed: null },
+  ben:    { player: 'Ben Adeyemi',     bumps: 0, lastSeat: null,         lastScribed: null },
+  aldous: { player: 'Aldous Finch',    bumps: 0, lastSeat: '2026-07-02', lastScribed: '2026-06-30' },
+  jonah:  { player: 'Jonah Reyes',     bumps: 0, lastSeat: '2026-08-05', lastScribed: '2026-08-10' },
+  dmitri: { player: 'Dmitri Sarn',     bumps: 0, lastSeat: '2026-08-12', lastScribed: null },
+  nia:    { player: 'Nia Osei',        bumps: 0, lastSeat: '2026-08-19', lastScribed: '2026-07-05' },
+  felix:  { player: 'Felix Aumann',    bumps: 0, lastSeat: '2026-08-22', lastScribed: '2026-08-18' }
 };
 
 // Slots are an unattached pool (ADR 0006). Each carries a start, an end, and a
@@ -455,7 +456,6 @@ const state = {
   open: params.get('open') || null,        // "questId:slotId" — the pairing being inspected
   confirmed: [],                            // [{quest, slot, party, waitlist, scribe}]
   dialog: null,                             // {quest, slot} being confirmed
-  scribe: null,
   flash: null
 };
 
@@ -485,6 +485,27 @@ function rota(a, b) {
   const bv = pb.lastSeat ? Date.parse(pb.lastSeat) : -Infinity;
   if (av !== bv) return av - bv;
   return Date.parse(a.at) - Date.parse(b.at);
+}
+
+/* THE SCRIBE, derived not chosen. Ticket 07 names one scribe at confirmation but
+   never says who picks; the Game Master picking was tried in this prototype and
+   struck. The debt goes to whoever in the party has gone longest without writing
+   one, never-scribed first, ties broken by rota position. Same shape as the rota:
+   derivable from reports we already keep, binding, and checkable. INVENTED HERE. */
+function scribeFor(o) {
+  return o.party.slice().sort((a, b) => {
+    const av = PEOPLE[a.who].lastScribed ? Date.parse(PEOPLE[a.who].lastScribed) : -Infinity;
+    const bv = PEOPLE[b.who].lastScribed ? Date.parse(PEOPLE[b.who].lastScribed) : -Infinity;
+    if (av !== bv) return av - bv;
+    return o.party.indexOf(a) - o.party.indexOf(b);
+  })[0];
+}
+
+function scribeWhy(who) {
+  const last = PEOPLE[who].lastScribed;
+  if (!last) return 'has never written one';
+  const days = Math.round((NOW() - Date.parse(last)) / 864e5);
+  return days < 28 ? 'last wrote one ' + days + ' days ago' : 'last wrote one ' + Math.round(days / 7) + ' weeks ago';
 }
 
 const slot = id => SLOTS.find(s => s.id === id);
@@ -910,6 +931,10 @@ function renderDialog() {
     <span><strong>${plural(o.waitlist.length, 'character')}</strong> go on the waitlist in this order —
     ${o.waitlist.map(i => esc(i.char)).join(', ')} — and it is frozen there. A freed seat goes to the
     first of them automatically, at any hour.</span></div>`);
+  spend.push(`<div class="line"><span class="g">&#9998;</span>
+    <span><strong>${esc(scribeFor(o).char)}</strong> owes the report — ${scribeWhy(scribeFor(o).who)},
+    the longest of anyone seated. Not your choice and not theirs; you cannot write it and you
+    cannot correct it.</span></div>`);
   if (o.absent.length) spend.push(`<div class="line"><span class="g">&#8593;</span>
     <span><strong>${plural(o.absent.length, 'declarer')}</strong> could not make this date and
     ${o.absent.length === 1 ? 'is' : 'are'} bumped: ${o.absent.map(i => esc(i.char)).join(', ')}.
@@ -925,22 +950,16 @@ function renderDialog() {
       Nobody on it is bumped — losing the date is not being refused.</span></div>`);
   });
 
-  const scribes = o.party.map(i => `<button class="btn small" data-scribe="${esc(i.char)}"
-    aria-pressed="${state.scribe === i.char}">${esc(i.char)}</button>`).join('');
+  const scribe = scribeFor(o);
 
   veil.hidden = false;
   veil.innerHTML = `<div class="dialog" role="dialog" aria-modal="true">
     <h2>Run ${esc(o.quest.title)} on ${day(o.slot.start)}?</h2>
     <p class="lede">This is the moment the quest becomes real. Here is what it spends.</p>
     <div class="spend">${spend.join('')}</div>
-    <div style="border-block-start:1px solid var(--color-border);padding-block-start:0.85rem">
-      <strong style="font-size:0.875rem">Who owes the report?</strong>
-      <div class="tiny dim">One character from the party. The debt follows the player, not the character.</div>
-      <div class="scribepick">${scribes}</div>
-    </div>
     <div class="acts">
       <button class="btn" data-close="1">Not yet</button>
-      <button class="btn primary" data-do="${state.dialog}" ${state.scribe ? '' : 'disabled'}>Confirm</button>
+      <button class="btn primary" data-do="${state.dialog}">Confirm</button>
     </div>
   </div>`;
 }
@@ -949,15 +968,15 @@ function doConfirm(key) {
   const [qid, sid] = key.split(':');
   const o = outcome(qid, sid);
   state.confirmed.push({
-    quest: qid, slot: sid, scribe: state.scribe,
+    quest: qid, slot: sid, scribe: scribeFor(o).char,
     party: o.party.map(i => i.char), waitlist: o.waitlist.map(i => i.char)
   });
   const losers = contenders(sid).filter(c => c.quest.id !== qid).map(c => c.quest.title);
   state.flash = `<strong>${esc(o.quest.title)} is confirmed into ${dayL(o.slot.start)}.</strong>
-    ${plural(o.party.length, 'seat')} cut by the rota, ${esc(state.scribe)} owes the report.
+    ${plural(o.party.length, 'seat')} cut by the rota, ${esc(scribeFor(o).char)} owes the report.
     ${losers.length ? esc(losers.join(' and ')) + ' lost the date.' : ''}
     <span class="dim">Everyone interested hears about it — which events, and how loudly, is ticket 09's.</span>`;
-  state.dialog = null; state.scribe = null; state.open = null;
+  state.dialog = null; state.open = null;
 }
 
 /* =========================================================================
@@ -1015,9 +1034,9 @@ function renderSwitcher() {
 }
 
 document.addEventListener('click', e => {
-  const t = e.target.closest('[data-cycle],[data-when],[data-width],[data-pair],[data-confirm],[data-scribe],[data-do],[data-close]');
+  const t = e.target.closest('[data-cycle],[data-when],[data-width],[data-pair],[data-confirm],[data-do],[data-close]');
   if (!t) {
-    if (state.dialog && e.target.id === 'veil') { state.dialog = null; state.scribe = null; render(); }
+    if (state.dialog && e.target.id === 'veil') { state.dialog = null; render(); }
     return;
   }
   e.preventDefault();
@@ -1035,21 +1054,18 @@ document.addEventListener('click', e => {
     state.open = state.open === t.dataset.pair ? null : t.dataset.pair;
   } else if (t.dataset.confirm) {
     state.dialog = t.dataset.confirm;
-    state.scribe = null;
     state.flash = null;
-  } else if (t.dataset.scribe) {
-    state.scribe = t.dataset.scribe;
   } else if (t.dataset.do) {
     doConfirm(t.dataset.do);
   } else if (t.dataset.close) {
-    state.dialog = null; state.scribe = null;
+    state.dialog = null;
   }
   render();
 });
 
 document.addEventListener('keydown', e => {
   if (/^(INPUT|TEXTAREA)$/.test(e.target.tagName) || e.target.isContentEditable) return;
-  if (e.key === 'Escape' && state.dialog) { state.dialog = null; state.scribe = null; return render(); }
+  if (e.key === 'Escape' && state.dialog) { state.dialog = null; return render(); }
   if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
   const keys = Object.keys(VARIANTS);
   const i = keys.indexOf(state.variant);

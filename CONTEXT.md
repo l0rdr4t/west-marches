@@ -128,8 +128,8 @@ The Game Master's act of binding a quest to one of its candidate slots. Where se
 quests target the same slot it chooses between them too, so it settles which quest and
 which date at once. Possible only once that slot's deadline has passed. It is the single moment a quest becomes real: it
 spends the slot, cuts the party from the interested characters by the rota, creates the
-waitlist, and names the scribe. The Game Master chooses the slot and nothing else — the
-cut is the rota's and cannot be overridden.
+waitlist, and derives the scribe. The Game Master chooses the slot and nothing else — the
+cut is the rota's and cannot be overridden, and neither is the scribe theirs to name.
 _Avoid_: Approval, booking, scheduling, locking
 
 **Level range**:
@@ -149,10 +149,12 @@ the campaign remembers — with holes where nobody wrote one.
 _Avoid_: Recap, log, summary, minutes, journal
 
 **Scribe**:
-The one character named at confirmation who owes a quest's report. Named as a
-character because that is what a party is made of, but the debt belongs to the
-player behind it and outlives that character. Others may edit the report; only the
-scribe is asked for it.
+The one character in a party who owes a quest's report. **Derived at confirmation, not
+chosen**: it falls to whoever in the party has gone longest without writing one,
+never-scribed first, ties broken by rota position. A Game Master no more picks the scribe
+than they pick the party. Derived as a character because that is what a party is made of,
+but the debt belongs to the player behind it and outlives that character. Others may edit
+the report; only the scribe is asked for it.
 _Avoid_: Author, note-taker, recorder, secretary
 
 **Room**:

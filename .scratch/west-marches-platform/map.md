@@ -147,6 +147,21 @@ prototypes, which exist to be reacted to and then deleted.
   **start and an end**; there is **no minimum party size**; **any** Game Master may cancel a
   confirmed quest, and deactivating one cancels theirs.
 
+- [Prototype: the Game Master's confirmation screen](issues/11-prototype-confirmation-screen.md) —
+  three variants built and reacted to. **B, a stack of per-date cards, is the Game Master's
+  screen.** `10`'s "start from variant A" is **superseded**: it predates the slot pool, and once
+  several quests target one date the grid is twenty cells for nine real pairings and has no room
+  for the rota beside the price. **ADR 0006's two-axis decision needs no second axis** — the
+  competing quests sit side by side *inside* the date's card, because the two axes are not
+  symmetrical: the date is scarce and the Game Master owns it. The **scribe picker was struck
+  from all three variants**: it was the last place a Game Master could exercise judgement over a
+  named person, which ADR 0005 removed from the party and did not mean to re-admit through the
+  report. The scribe is now **derived** — longest without writing one, never-scribed first, ties
+  by rota position — deliberately *not* the rota itself, so that finally earning a seat does not
+  arrive with a chore attached. `CONTEXT.md`'s **Scribe** and **Confirmation** amended accordingly.
+  Contender ordering is "best party first", accepted with its cost named: it sinks the quest
+  whose only date it is, and the flag under it does the work the sort order doesn't.
+
 ## Not yet specified
 
 - **Character lifecycle.** What happens on death or retirement? **Unblocked, and much
@@ -156,18 +171,16 @@ prototypes, which exist to be reacted to and then deleted.
   players, not characters. What is left is death and retirement, and whether either is a state
   the platform holds at all.
 - **The campaign's front page.** What a player sees on arrival: open quests, my standing,
-  upcoming slots, unreported quests? `01` and `10` are in — `10` drew its page inside a fake
-  sidebar carrying `08`'s rules and nothing fought it — so this now waits on `11` alone.
-  `14` adds one question to it: whether Game-Master-proposed and player-proposed quests share
+  upcoming slots, unreported quests? **Unblocked** — `01`, `10` and now `11` are all in, and
+  nothing else gates it. `11` settles what it is *not*: the confirmation screen is the
+  Game-Master surface, reached from "You run" in the sidebar, and shows only dates the viewer
+  offered. `14` adds one question: whether Game-Master-proposed and player-proposed quests share
   one list. One model implies one list; the layout is this item's.
 - **Permissions in detail.** Who may edit or withdraw a quest that isn't theirs, or remove
   someone's interest. **Unblocked** by `05`, which settled the two flags and their scope but
   not these. `14` routed one more here: whether a Game-Master-proposed quest is any different,
   and its answer was that nothing about who proposed it makes it a different question.
   (Correcting a report is already answered: `07` says a Game Master may never do it.)
-- **What a Game Master sees when three quests want the same Friday.** ADR 0006 makes
-  confirmation a two-axis decision — which quest as well as which slot — and nothing has drawn
-  it. `11`'s to prototype, but flagged here because `11`'s question predates the pool.
 - **Life at a year in.** `08` settled that rooms are kept forever and frozen ones leave the
   sidebar, so navigation no longer degrades. What remains: whether hundreds of played quests
   and their reports need paging or retention on their own listing pages.
@@ -178,6 +191,11 @@ resolved — `15` in **ADR 0005**. What remains here has no ticket:
 - **No unit above the Slot, and burnout is the documented cause of death.** Adventuring blocks with
   a retrospective, two-GM rotation, enforced downtime — every long-lived campaign has a pacing
   device for the Game Master. Ours has none. (Contradiction 11.)
+- **The scribe rule is invented and unratified.** `11` struck the scribe picker and put a
+  derivation in its place — longest without writing one, never-scribed first. Nothing in `07`
+  contradicts it, but nothing in `07` says it either. `12` writes it down or `07` disowns it.
+- **Contender ordering.** "Best party first" is what `11` built and accepted; it is in no ADR.
+
 - **Search quality is now load-bearing.** ADR 0004 makes retrieval the whole of our answer to
   "what do we know about X", but `SearchesController` still does `last(100)` with no ranking
   and no scoping (`app/controllers/searches_controller.rb:23`). Ranking, paging and scoping
