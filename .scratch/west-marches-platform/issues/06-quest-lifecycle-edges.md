@@ -27,3 +27,17 @@ either holds or falls over.
   sort it down? (Q21 settled: no auto-deletion.)
 - Surfaced by `04`: does a slot carry a duration or end time, or only a start? Players need to know
   whether they are committing to three hours or six before they declare interest.
+- Surfaced by `15`, and now load-bearing for fairness rather than tidiness: **a cancelled
+  quest must not spend anybody's standing.** ADR 0005 makes the *seat* the currency, not
+  attendance, so a Game Master calling off a session would otherwise silently cost five
+  people their turn on the rota. (This also answers the older bullet above — "does being in a
+  party that never actually met count toward played least recently" — in the affirmative
+  unless this ticket says otherwise, which is precisely the danger.)
+- Surfaced by `15`: **stale interest on distant slots.** Deadlines are per slot, so someone
+  can tick a date seven weeks out and be seated on it having long since forgotten. Withdrawing
+  before that slot's deadline is free and costs no standing; what happens after it is this
+  ticket's.
+- Surfaced by `15`: **confirming an under-subscribed slot** — `10` found this is the common
+  case, not an edge, with two of four candidate slots producing a party of four against five
+  seats. Related to the party-size bullet above, and now with a deadline in play: the Rota
+  cannot rank a set it has not finished collecting.

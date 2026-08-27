@@ -188,7 +188,10 @@ correct one.
 
 - **Does a departed player's past attendance still weigh on other players' standing?** Ticket
   `15`'s, deliberately. It may replace recency ranking outright, and answering it here would be
-  guessing at its conclusion.
+  guessing at its conclusion. **Answered by `15`: no, and it dissolved rather than being
+  decided.** The rota's sort key is entirely individual — your bumps, your last seat — so
+  nobody's history moves anybody else's position, and a departure changes nothing for anyone
+  who stays.
 - **A confirmed quest whose Game Master was revoked or departed** — ticket `06`, with cancellation.
 - **Character level, death and retirement** — the character-lifecycle ticket `map.md` already flags.
 - **A Game-Masters-only room**, raised by ticket `08` as this ticket's to raise. Raised, and

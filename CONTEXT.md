@@ -16,8 +16,8 @@ campaign; there is no notion of a second.
 _Avoid_: Account, tenant, workspace, server
 
 **Game Master**:
-A person who runs quests. A campaign has several, and any of them may offer times
-and confirm quests into them. It is a standing property of a person, granted and
+A person who runs quests. A campaign has several, and any of them may propose a
+quest, offer times, and confirm quests into them. It is a standing property of a person, granted and
 revoked by an administrator — not a role held for one quest, and not something that
 makes them any less a player. The Game Master *of* a quest is never stored: it is
 whoever owns the slot the quest was confirmed into.
@@ -32,7 +32,8 @@ _Avoid_: Member, user, participant
 **Character**:
 A persona belonging to one player, with a name and a level. A player may have
 several, creates them freely, and they are what actually goes on a quest. Nobody
-admits a character to the campaign.
+admits a character to the campaign. The level is a note for people to read: the
+platform records it and never reasons about it.
 _Avoid_: PC, avatar, hero, sheet
 
 **Roster**:
@@ -53,7 +54,8 @@ _Avoid_: Owner, moderator, staff, superuser
 
 **Quest**:
 A single proposed expedition: where the party is going and what they mean to do
-there. It is proposed by a player, discussed, scheduled into one slot, played once,
+there. Proposed by a player, or by a Game Master — whose proposal arrives with its
+slots already attached — then discussed, scheduled into one slot, played once,
 and then done. Unfinished business in the world comes back as a *new* quest, which may
 say which quest it *follows from* — a pointer for people to read, not a structure the
 system traverses. Nothing is inherited along it.
@@ -61,7 +63,9 @@ _Avoid_: Session, adventure, event, game, mission, module
 
 **Slot**:
 A dated window a Game Master has offered to run in. Exclusive: once a quest is
-confirmed into it, it is spent.
+confirmed into it, it is spent. Carries its own deadline — interest in it closes
+72 hours before it starts, set by the Game Master who offered it, and it cannot be
+confirmed until then.
 _Avoid_: Availability, time, date, session slot, booking
 
 **Interest**:
@@ -71,13 +75,26 @@ slot — an interest with no date cannot be ranked or seated, so it is not one, 
 withdrawing the last date withdraws the interest. Not yet a seat.
 _Avoid_: Signup, RSVP, application, vote
 
+**Rota**:
+The order the party is cut in. Ranks the interested players by bumps since their last
+seat, then by how long since that seat — never seated sorts as longest — then by who
+declared first. Computed per candidate slot, applied at confirmation, and binding: a
+Game Master picks the slot, never the party.
+_Avoid_: Priority queue, rotation, algorithm, the list, least recently played
+
+**Bump**:
+What you carry away when the slot you declared for is confirmed and you were not
+seated. The unit the rota counts, and the thing that earns your next seat. A quest
+that dies unconfirmed bumps nobody, and a slot you could not have made cannot bump
+you — you were never in the running for it.
+_Avoid_: Miss, rejection, strike, snub, loss
+
 **Standing**:
 Where a player sits in the order the party would be cut in, for one candidate slot —
-"4th of 6, seated" or "6th of 8, first on the waitlist". Read off who has played least
-recently, and provisional: it moves as others declare and means nothing until
-confirmation. There is one per candidate slot, not one per quest, because a character
-who cannot make a date is not in the running for it. Names the player's position, not
-the rule that produces it.
+"4th of 6, seated" or "6th of 8, first on the waitlist". Read off the rota, and
+provisional: it moves as others declare and means nothing until confirmation. There is one per candidate slot, not one per quest, because a
+character who cannot make a date is not in the running for it. Names the player's
+position, not the rule that produces it — that is the rota.
 _Avoid_: Rank, priority, score, place in line, queue position
 
 **Party**:
@@ -88,24 +105,29 @@ _Avoid_: Group, team, roster, attendees
 **Attendance**:
 Who actually went, as corrected by a Game Master after play. It may add a waitlist
 character who came along anyway, and drop someone who fell ill. It decides who may
-edit the report, and it is what "played least recently" counts, so it must be true
-rather than convenient.
+edit the report. It does *not* feed the rota — a seat spends your standing whether or
+not you walk in — so it is a record of what happened and nothing hangs on it but the
+report.
 _Avoid_: Turnout, present, roll call, the party
 
 **Waitlist**:
-The characters who declared interest in a confirmed quest but did not make the cut,
-kept in priority order in case a seat frees up.
+The characters who declared interest in a confirmed quest but did not make the cut.
+The rota continuing past the cut line, and frozen at confirmation: the order does not
+re-sort afterwards, so "first seat to free up is yours" stays true.
 _Avoid_: Queue, standby, overflow
 
 **Confirmation**:
-The Game Master's act of binding a quest to one of its candidate slots. It is the
-single moment a quest becomes real: it spends the slot, cuts the party from the
-interested characters, creates the waitlist, and names the scribe.
+The Game Master's act of binding a quest to one of its candidate slots. Possible only
+once that slot's deadline has passed. It is the single moment a quest becomes real: it
+spends the slot, cuts the party from the interested characters by the rota, creates the
+waitlist, and names the scribe. The Game Master chooses the slot and nothing else — the
+cut is the rota's and cannot be overridden.
 _Avoid_: Approval, booking, scheduling, locking
 
 **Level range**:
-The band of character levels a quest is pitched at. Advisory: an out-of-range
-character is flagged, never refused.
+The band of character levels a quest is pitched at, written on the quest for people
+to read. The platform never compares it to a character's level: nothing is flagged and
+nothing is refused.
 _Avoid_: Requirement, tier gate, restriction
 
 ## Afterwards

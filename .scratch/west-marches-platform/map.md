@@ -16,8 +16,8 @@ Reached when every ticket below is resolved and the spec exists at
 **Domain.** A single West Marches TTRPG campaign. A large roster of players, no fixed
 party. Players propose **quests**; Game Masters offer dated **slots**; interested
 players declare which slots they can make; a Game Master **confirms** a quest into one
-slot, which cuts the **party** by who played least recently. Afterwards someone writes
-the **report**. Play happens elsewhere.
+slot, which cuts the **party** by the **rota**. Afterwards someone writes the **report**.
+Play happens elsewhere.
 
 **Read first, every session.**
 - `CONTEXT.md` — the glossary. It is opinionated about vocabulary; Campfire's inherited
@@ -25,6 +25,7 @@ the **report**. Play happens elsewhere.
 - `docs/adr/0001-hard-fork-of-campfire.md` — why this is a Campfire fork, and single-tenant
 - `docs/adr/0002-a-quest-is-a-single-expedition.md` — why quest and session are one model
 - `docs/adr/0003-scheduling-and-party-selection.md` — how a quest gets scheduled and a party gets cut
+- `docs/adr/0005-the-rota-cuts-every-party.md` — the rota: what the cut ranks by, and why nobody overrides it
 
 **Skills.** `/grilling` and `/domain-modeling` for the decision tickets, `/prototype` for
 the prototype tickets, `/research` for the research tickets. Update `CONTEXT.md` inline
@@ -106,35 +107,60 @@ prototypes, which exist to be reacted to and then deleted.
   printed on **every** row and never rounded, and a waitlist position that is worth something.
   An interest that names no slot is not an interest. Added **Standing** to `CONTEXT.md`, and
   invented an `interestCloses` deadline the page cannot be written without — `15`'s to own.
+- [Can a Game Master propose a quest?](issues/14-can-a-game-master-propose-a-quest.md) — **yes,
+  and it is the same object**, with the proposer recorded and no second lifecycle. A Game
+  Master's proposal simply arrives with its slots attached, collapsing acts one and two.
+  `03` is not close on this: 70% of quests are Game-Master-posted in the one measured campaign,
+  and contradiction 8 says campaigns die of *under-supply of initiative*. Colvillian's two
+  channels are rejected because the only rule that actually differed between them was the
+  recency exemption, which `15` struck. A single-date quest is just a quest with one candidate
+  slot, so the RSVP shape every existing tool uses needs no second model.
+- [Who cuts the party — the system, or whoever proposed the quest?](issues/15-who-cuts-the-party.md) —
+  the system, on every quest, **binding**. **ADR 0005** amends ADR 0003 and retitles it: the
+  three acts stand, the ranking does not. The cut is the **rota** — bumps since your last seat,
+  then how long since that seat, then who declared first — because the attested mechanism
+  rewards *being refused*, not being absent, and pure recency let a player who never declared
+  outrank one bumped twice. No Game Master override (`Q13`, which `11` cited for one, turns out
+  not to exist anywhere in this repo); a Game Master picks **which slot** and nothing else.
+  Everything is per candidate slot: standing, bumps, and a **deadline 72h before each slot**
+  that hard-gates confirmation into it. The interest list is **fully disclosed** with the reason
+  on every row, because a binding cut has no appeal and checkability is its only accountability
+  — and Colvillian's chilling-effect objection dies with the rota, where being passed over is
+  what buys the next seat. **A seat spends your standing, not attendance**: withdraw before the
+  deadline and keep your place, no-show and you have spent it. Waitlist is the rota continuing,
+  **frozen**. The cut is blind to your character, and level went further — the platform records
+  it and **never compares it**, because advisory-but-computed is attested nowhere and a stale
+  number driving an automatic decision is worse than none.
 
 ## Not yet specified
 
-- **Character lifecycle.** Who sets a character's level, and when? What happens on death
-  or retirement, and does a dead character's history still count toward its player's
-  "played least recently" standing? **Unblocked** — `05` settled that players create
-  characters freely and deliberately left level, death and retirement here. Needs a ticket
-  of its own, and the standing half of it may be `15`'s.
+- **Character lifecycle.** What happens on death or retirement? **Unblocked, and much
+  smaller than it was.** `05` settled that players create characters freely; `15` settled that
+  level is a note the platform never reasons about, so "who sets a character's level, and when"
+  no longer gates anything; and the standing half is gone entirely, because the rota ranks
+  players, not characters. What is left is death and retirement, and whether either is a state
+  the platform holds at all.
 - **The campaign's front page.** What a player sees on arrival: open quests, my standing,
   upcoming slots, unreported quests? `01` and `10` are in — `10` drew its page inside a fake
   sidebar carrying `08`'s rules and nothing fought it — so this now waits on `11` alone.
-- **Is a character's level mismatch public?** Q16 makes the warning advisory, and `10` showed it
-  twice: inline when you pick the character, and as a pill on that character's row that the whole
-  campaign can read. The second is a social pressure nobody decided on, and may be what stops an
-  out-of-range player declaring at all — a refusal by other means. No ticket owns it; `15` owns
-  only how much of the interest list is visible.
+  `14` adds one question to it: whether Game-Master-proposed and player-proposed quests share
+  one list. One model implies one list; the layout is this item's.
 - **Permissions in detail.** Who may edit or withdraw a quest that isn't theirs, or remove
   someone's interest. **Unblocked** by `05`, which settled the two flags and their scope but
-  not these. (Correcting a report is already answered: `07` says a Game Master may never do it.)
+  not these. `14` routed one more here: whether a Game-Master-proposed quest is any different,
+  and its answer was that nothing about who proposed it makes it a different question.
+  (Correcting a report is already answered: `07` says a Game Master may never do it.)
 - **Life at a year in.** `08` settled that rooms are kept forever and frozen ones leave the
   sidebar, so navigation no longer degrades. What remains: whether hundreds of played quests
   and their reports need paging or retention on their own listing pages.
 - **Is a played quest that "didn't happen" a thing?** `07` depends on a Game Master being able
   to say a confirmed quest was cancelled on the day, or the system demands a report from a party
-  that never met and feeds a phantom session into "played least recently". Ticket `06`'s.
+  that never met. Ticket `06`'s, and `15` raised the stakes: under ADR 0005 the *seat* spends
+  your standing, so a cancelled quest that isn't handled costs five people their turn on the
+  rota.
 
-From `03`'s research. Its two sharpest contradictions are now tickets `14` (can a Game Master
-propose a quest?) and `15` (who cuts the party?); `15` may end in an ADR 0005. What remains
-here has no ticket:
+From `03`'s research. Its two sharpest contradictions became tickets `14` and `15`, both now
+resolved — `15` in **ADR 0005**. What remains here has no ticket:
 
 - **No unit above the Slot, and burnout is the documented cause of death.** Adventuring blocks with
   a retrospective, two-GM rotation, enforced downtime — every long-lived campaign has a pacing

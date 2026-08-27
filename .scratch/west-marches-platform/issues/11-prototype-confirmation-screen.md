@@ -18,10 +18,17 @@ Build a rough, throwaway prototype of what the Game Master sees:
   slot are visible before picking it
 - The moment of confirmation, and what it visibly spends: the slot, and the other quests
   that were counting on it
-- Overriding the automatic cut. Q13 settled that the Game Master can reorder or remove;
-  find out how much friction that should have, so it stays an exception rather than a habit
-- Out-of-range characters, flagged for their attention
+- ~~Overriding the automatic cut~~ — **struck by `15`.** There is no override: ADR 0005 makes
+  the rota binding, and `Q13`, cited above, turned out to be uncitable. The Game Master's only
+  judgement is **which slot**, which makes this screen a slot-picker rather than a party-editor.
+- **Slot choice is therefore party engineering** (`15`). A Game Master who wants a different
+  party has to pick a different date. That is oblique and a little perverse, and people will
+  use it that way — design knowing it.
+- ~~Out-of-range characters, flagged for their attention~~ — **struck by `15`.** The platform
+  no longer compares a character's level to a quest's level range at all. Both are text.
 - What they do when no slot produces a decent party
 
-Read ticket `06` for the lifecycle and ticket `10` for the player-side vocabulary this has
-to agree with.
+Read ticket `06` for the lifecycle, ticket `10` for the player-side vocabulary this has to
+agree with, and ticket `15` for what confirmation can and cannot do. `10` recommends starting
+from its variant A — the matrix with rows in rota order and the column footer that prices each
+slot in parties ("4 seated · 1 seat short") — which is now the whole of the decision aid.
