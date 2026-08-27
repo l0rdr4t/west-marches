@@ -33,6 +33,23 @@ Build a rough, throwaway prototype of what the Game Master sees:
   no longer compares a character's level to a quest's level range at all. Both are text.
 - What they do when no slot produces a decent party
 
+## Prototype
+
+Built, awaiting reaction — no findings yet.
+[`prototypes/11-confirmation-screen/confirmation-screen.html`](../prototypes/11-confirmation-screen/confirmation-screen.html).
+One self-contained file, no build. Open it and use the floating bar: `←`/`→` (or the arrow keys)
+cycle three variants, `clock` moves the day between 2 Sep and 10 Sep, `width` swaps in a 390px
+phone frame. Confirming is live and mutates the board — reload to reset.
+
+- **A · The Grid** — your dates down the side, the quests targeting them across the top; each cell
+  is the party that pairing would produce. Refuses to pick an axis.
+- **B · By Date** — one card per date you offered, the competing quests side by side inside it.
+- **C · By Quest** — one card per quest, the dates it could run on inside it, ordered by which
+  dies soonest.
+
+Fake data: four dates of yours plus one of Nia Osei's, four quests, and Friday wanted by three of
+them — including one whose only date in the world it is.
+
 Read ticket `06` for the lifecycle, ticket `10` for the player-side vocabulary this has to
 agree with, and ticket `15` for what confirmation can and cannot do. `10` recommends starting
 from its variant A — the matrix with rows in rota order and the column footer that prices each
